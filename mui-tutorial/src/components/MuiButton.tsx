@@ -1,5 +1,5 @@
-import { Stack, Button,IconButton } from "@mui/material";
-import SendIcon from '@mui/icons-material/Send';
+import { Stack, Button, IconButton, ButtonGroup } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 const MuiButton = () => {
   return (
@@ -31,17 +31,34 @@ const MuiButton = () => {
           success
         </Button>
       </Stack>
-      <Stack display='block' spacing={2} direction='row'>
-        <Button variant="contained" size="small">Small</Button>
-        <Button variant="contained" size="medium">medium</Button>
-        <Button variant="contained" size="large">large</Button>
+      <Stack display="block" spacing={2} direction="row">
+        <Button variant="contained" size="small">
+          Small
+        </Button>
+        <Button variant="contained" size="medium">
+          medium
+        </Button>
+        <Button variant="contained" size="large">
+          large
+        </Button>
       </Stack>
       <Stack spacing={2} direction="row">
-        <Button variant="contained" startIcon={<SendIcon/>} >send </Button>
-        <Button variant="contained" endIcon={<SendIcon/>} disableElevation>send </Button>
-        <IconButton aria-label="send" color="success" size="small"> 
-          <SendIcon/>
+        <Button variant="contained" startIcon={<SendIcon />}>
+          send{" "}
+        </Button>
+        <Button variant="contained" endIcon={<SendIcon />} disableElevation>
+          send{" "}
+        </Button>
+        <IconButton aria-label="send" color="success" size="small">
+          <SendIcon />
         </IconButton>
+      </Stack>
+      <Stack direction="row">
+        <ButtonGroup variant="contained" orientation="vertical" size="small" color="secondary" aria-label="vertical contained secondary button group">
+          <Button >left</Button>
+          <Button >center</Button>
+          <Button >right</Button>
+        </ButtonGroup>
       </Stack>
     </Stack>
   );
