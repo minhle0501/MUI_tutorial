@@ -1,0 +1,14 @@
+{
+  
+  "editor.tabCompletion": "on", // Giữ lại Tab cho các gợi ý mặc định
+  "editor.suggestSelection": "first", // Chọn gợi ý đầu tiên khi nhấn Enter
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.acceptSuggestionOnEnter": "on", // Chấp nhận gợi ý khi nhấn Enter
+  "tabnine.enabled": false, // Bật TabNine
+  "tabnine.deeplearning": true, // Bật Deep Completion của TabNine để có gợi ý thông minh hơn
+  "tabnine.completionDelay": 50 // Điều chỉnh độ trễ khi gợi ý TabNine xuất hiện
+}
