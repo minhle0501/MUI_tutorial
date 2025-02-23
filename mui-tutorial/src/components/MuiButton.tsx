@@ -28,7 +28,7 @@ const MuiButton = () => {
         <Button variant="text" href="http://google.com">
           Text
         </Button>
-        <Button variant="contained">contained</Button>
+        
         <Button variant="outlined">outlined</Button>
       </Stack>
       <Stack spacing={2} direction="row">
