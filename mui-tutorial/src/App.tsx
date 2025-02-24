@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route,} from "react-router-dom";
 import { Autocomplete, TextField } from "@mui/material";
+import MuiLoadingButton from "./components/MuiLoadingButton";
 import MuiSkeleton from "./components/MuiSkeleton";
 import MuiProgress from "./components/MuiProgress";
 import MuiDiaLog from "./components/MuiDiaLog";
@@ -31,6 +32,7 @@ import MuiButton from "./components/MuiButton";
 import MuiTypography from "./components/MuiTypography";
 
 const options = [
+  {label: "MuiLoadingButton", path: "/mui-loading-button"},
   {label: "MuiSkeleton", path: "/mui-skeleton"},
   {label: "MuiProgress", path: "/mui-progress"},
   {label: "MuiDiaLog", path: "/mui-dia-log"},
@@ -81,6 +83,7 @@ function App() {
           }}
         />
         <Routes>
+          <Route path="/mui-loading-button" element={<MuiLoadingButton />} />
           <Route path="/mui-skeleton" element={<MuiSkeleton />} />
           <Route path="/mui-progress" element={<MuiProgress />} />
           <Route path="/mui-dia-log" element={<MuiDiaLog />} />
