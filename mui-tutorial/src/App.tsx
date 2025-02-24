@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Menu, MenuItem, Button } from '@mui/material';
 import { useState } from 'react';
+import MuiBottomNavigation from './components/MuiBottomNavigation';
 import MuiSpeedDial from './components/MuiSpeedDial';
 import MuiBreadcrumbs from './components/MuiBreadcrumbs';
 import MuiLink from "./components/MuiLink";
@@ -51,6 +52,7 @@ function App() {
             'aria-labelledby': 'basic-button',
           }}
         >
+          <MenuItem onClick={handleClose} component={Link} to="/mui-bottom-navigation">MuiBottomNavigation</MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/mui-speed-dial">MuiSpeedDial</MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/mui-breadcrumbs">MuiBreadCrumbs</MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/mui-link">MuiLink</MenuItem>
@@ -70,6 +72,7 @@ function App() {
           <MenuItem onClick={handleClose} component={Link} to="/mui-typography">MuiTypography</MenuItem>
         </Menu>
         <Routes>
+          <Route path="/mui-bottom-navigation" element={<MuiBottomNavigation />} />
           <Route path="/mui-speed-dial" element={<MuiSpeedDial />} />
           <Route path="/mui-breadcrumbs" element={<MuiBreadcrumbs />} />
           <Route path="/mui-link" element={<MuiLink />} />
