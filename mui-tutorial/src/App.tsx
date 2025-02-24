@@ -1,7 +1,8 @@
-
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Menu, MenuItem, Button } from '@mui/material';
 import { useState } from 'react';
+import MuiSpeedDial from './components/MuiSpeedDial';
+import MuiBreadcrumbs from './components/MuiBreadcrumbs';
 import MuiLink from "./components/MuiLink";
 import MuiNavBar from "./components/MuiNavBar";
 import MuiImageList from "./components/MuiImageList";
@@ -50,6 +51,8 @@ function App() {
             'aria-labelledby': 'basic-button',
           }}
         >
+          <MenuItem onClick={handleClose} component={Link} to="/mui-speed-dial">MuiSpeedDial</MenuItem>
+          <MenuItem onClick={handleClose} component={Link} to="/mui-breadcrumbs">MuiBreadCrumbs</MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/mui-link">MuiLink</MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/mui-nav-bar">MuiNavBar</MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/mui-image-list">MuiImageList</MenuItem>
@@ -67,6 +70,8 @@ function App() {
           <MenuItem onClick={handleClose} component={Link} to="/mui-typography">MuiTypography</MenuItem>
         </Menu>
         <Routes>
+          <Route path="/mui-speed-dial" element={<MuiSpeedDial />} />
+          <Route path="/mui-breadcrumbs" element={<MuiBreadcrumbs />} />
           <Route path="/mui-link" element={<MuiLink />} />
           <Route path="/mui-nav-bar" element={<MuiNavBar />} />
           <Route path="/mui-image-list" element={<MuiImageList />} />
