@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route,} from "react-router-dom";
 import { Autocomplete, TextField } from "@mui/material";
+import MuiChip from "./components/MuiChip";
 import MuiList from "./components/MuiList";
 import MuiBadge from "./components/MuiBadge";
 import MuiAvatar from "./components/MuiAvatar";
@@ -23,6 +24,7 @@ import MuiButton from "./components/MuiButton";
 import MuiTypography from "./components/MuiTypography";
 
 const options = [
+  { label: "MuiChip", path: "/mui-chip" },
   { label: "MuiList", path: "/mui-list" },
   { label: "MuiBadge", path: "/mui-badge" },
   { label: "MuiAvatar", path: "/mui-avatar" },
@@ -65,6 +67,7 @@ function App() {
           }}
         />
         <Routes>
+          <Route  path="/mui-chip" element={<MuiChip />} />
           <Route path="/mui-list" element={<MuiList />} />
           <Route path="/mui-badge" element={<MuiBadge />} />
           <Route path="/mui-avatar" element={<MuiAvatar />} />
