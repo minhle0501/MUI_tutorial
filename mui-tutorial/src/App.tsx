@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route,} from "react-router-dom";
 import { Autocomplete, TextField } from "@mui/material";
+import MuiProgress from "./components/MuiProgress";
 import MuiDiaLog from "./components/MuiDiaLog";
 import MuiSnackBar from "./components/MuiSnackBar";
 import MuiAlert from "./components/MuiAlert";
@@ -29,6 +30,7 @@ import MuiButton from "./components/MuiButton";
 import MuiTypography from "./components/MuiTypography";
 
 const options = [
+  {label: "MuiProgress", path: "/mui-progress"},
   {label: "MuiDiaLog", path: "/mui-dia-log"},
   {label: "MuiSnackBar", path: "/mui-snack-bar"},
   { label: "MuiAlert", path: "/mui-alert" },
@@ -77,6 +79,7 @@ function App() {
           }}
         />
         <Routes>
+          <Route path="/mui-progress" element={<MuiProgress />} />
           <Route path="/mui-dia-log" element={<MuiDiaLog />} />
           <Route path="/mui-snack-bar" element={<MuiSnackBar />} />
           <Route path="/mui-alert" element={<MuiAlert />} />
