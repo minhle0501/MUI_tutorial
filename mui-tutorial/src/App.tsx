@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mui/material";
 
+import MuiResponsiveness from "./components/MuiResponsiveness";
 import MuiMasonry from "./components/MuiMasonry";
 import MuiTimeLine from "./components/MuiTimeLine";
 import MuiTabs from "./components/MuiTabs";
@@ -44,6 +45,7 @@ import MuiButton from "./components/MuiButton";
 import MuiTypography from "./components/MuiTypography";
 
 const options = [
+  {label:"MuiResponsiveness",path:"/mui-responsiveness"},
   {label:"MuiMasonry",path:"/mui-masonry"},
   {label:"MuiTimeLine",path:"/mui-time-line"},
   { label: "MuiTabs", path: "/mui-tabs" },
@@ -104,6 +106,7 @@ function App() {
 
       <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Routes>
+            <Route path="/mui-responsiveness" element={<MuiResponsiveness />} />
             <Route path="/mui-masonry" element={<MuiMasonry />} />
             <Route path="/mui-time-line" element={<MuiTimeLine />} />
             <Route path="/mui-tabs" element={<MuiTabs />} />
