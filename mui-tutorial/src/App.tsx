@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mui/material";
 
+import MuiTransition from "./components/MuiTransition";
 import MuiStepper from "./components/MuiStepper";
 import MuiBackDrop from "./components/MuiBackDrop";
 import MuiPagination from "./components/MuiPagination";
@@ -50,6 +51,7 @@ import MuiButton from "./components/MuiButton";
 import MuiTypography from "./components/MuiTypography";
 
 const options = [
+  {label:"MuiTransition",path:"/mui-transition"},
   {label:"MuiStepper",path:"/mui-stepper"},
   {label:"MuiBackDrop",path:"/mui-back-drop"},
   {label:"MuiPagination",path:"/mui-pagination"},
@@ -116,6 +118,7 @@ function App() {
 
       <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Routes>
+            <Route path="/mui-transition" element={<MuiTransition />} />
             <Route path="/mui-stepper" element={<MuiStepper />} />
             <Route path="/mui-back-drop" element={<MuiBackDrop />} />
             <Route path="/mui-pagination" element={<MuiPagination />} />
