@@ -1,17 +1,19 @@
 import { Box } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers";
+/* import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import MuiRoutes from "./router/MuiRoutes";
-import MuiAutocompleteSelector from "./components/mui_components/MuiAutocompleteSelector";
+import MuiAutocompleteSelector from "./components/mui_components/MuiAutocompleteSelector"; */
+import ReactVideo from "./pages/ReactVideo";
 
 function App() {
   return (
     <>
       <Box>
-        <MuiAutocompleteSelector />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        {/* <MuiAutocompleteSelector /> */}
+        <ReactVideo/>
+        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
           <MuiRoutes />
-        </LocalizationProvider>
+        </LocalizationProvider> */}
       </Box>
     </>
   );
