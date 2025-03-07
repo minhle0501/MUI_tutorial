@@ -67,20 +67,21 @@ const PrettoSlider = styled(Slider)({
 });
 
 interface PlayerControlProps {
-  playing: boolean;
-  onPlayPause: () => void;
-  onRewind: () => void;
-  onFastRewind: () => void;
-  muted: boolean;
-  onMute: () => void;
-  onVolumeChange: (event: Event, newValue: number | number[]) => void;
-  onVolumeSeekDown: (
+  playing?: boolean;
+  onPlayPause?: () => void;
+  onRewind?: () => void;
+  onFastRewind?: () => void;
+  muted?: boolean;
+  onMute?: () => void;
+  onVolumeChange?: (event: Event, newValue: number | number[]) => void;
+  onVolumeSeekDown?: (
     event: React.SyntheticEvent | Event,
     newValue: number | number[]
   ) => void;
   volume: number;
   playbackRate?: number;
   onPlaybackRateChange?: (rate: number) => void;
+  onToggleFullScreen?: () => void;
 }
 
 const PlayerControl: React.FC<PlayerControlProps> = ({
@@ -95,6 +96,7 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
   volume,
   playbackRate,
   onPlaybackRateChange,
+  onToggleFullScreen,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -237,7 +239,7 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
               ))}
             </List>
           </Popover>
-          <IconButton sx={bottemButton}>
+          <IconButton onClick={onToggleFullScreen} sx={bottemButton}>
             <Fullscreen fontSize="large" />
           </IconButton>
         </Grid>

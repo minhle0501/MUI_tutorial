@@ -3,10 +3,15 @@ import { Container, Box } from "@mui/material";
 import ReactPlayer from "react-player";
 import PlayerControl from "../components/PlayerComponent/PlayerControl";
 import { useState, useRef } from "react";
+import screenfull from "screenfull";
+
 
 const ReactVideo: React.FC = () => {
-  const [playing, setPlaying] = useState<boolean>(true);
+ 
   const playerRef = useRef<ReactPlayer>(null);
+  const playerContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const [playing, setPlaying] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [volume, setVolume] = useState<number>(0.5);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
@@ -43,16 +48,20 @@ const ReactVideo: React.FC = () => {
   const handelePlaybackRateChange = (speed: number) => {
     setPlaybackRate(speed);
   };
+
+  const toggleFullScreen = () => {
+    screenfull.toggle(playerContainerRef.current!);
+  }
   return (
     <Container maxWidth="md">
-      <Box
+      <Box ref={playerContainerRef}
         component={"div"}
         sx={{ position: "relative", width: "100%", height: "100%" }}
       >
         <ReactPlayer
           ref={playerRef}
           width="100%"
-          height="auto"
+          height="100%"
           playing={playing}
           muted={isMuted}
           volume={volume}
@@ -71,6 +80,7 @@ const ReactVideo: React.FC = () => {
           volume={volume}
           playbackRate={playbackRate}
           onPlaybackRateChange={handelePlaybackRateChange}
+          onToggleFullScreen={toggleFullScreen}
         />
       </Box>
     </Container>
