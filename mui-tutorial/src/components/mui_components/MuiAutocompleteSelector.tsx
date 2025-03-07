@@ -14,6 +14,7 @@ const MuiAutocompleteSelector = () => {
         options={muiOptions}
         getOptionLabel={(option: MuiOption) => option.label}
         style={{ width: 300, marginBottom: 20 }}
+
         renderInput={(params) => (
           <TextField {...params} label="Mui components" variant="outlined" />
         )}
