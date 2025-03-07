@@ -4,7 +4,7 @@ import {
 } from "@mui/material";
 
 import ReactPlayer from "react-player";
-import PlayerControl from "../components/mui_components/PlayerComponent/PlayerControl";
+import PlayerControl from "../components/PlayerComponent/PlayerControl";
 const ReactVideo = () => {
  
 
