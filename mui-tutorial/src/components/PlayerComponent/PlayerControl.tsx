@@ -22,7 +22,7 @@ import {
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 
-const speeds: string[] = ["0.5x", "1x", "1.5x", "2x"];
+const speeds: number[] = [0.5, 1, 1.5, 2];
 
 const PlayPauseButton = {
   fontSize: 40,
@@ -79,6 +79,8 @@ interface PlayerControlProps {
     newValue: number | number[]
   ) => void;
   volume: number;
+  playbackRate?: number;
+  onPlaybackRateChange?: (rate: number) => void;
 }
 
 const PlayerControl: React.FC<PlayerControlProps> = ({
@@ -91,6 +93,8 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
   onVolumeChange,
   onVolumeSeekDown,
   volume,
+  playbackRate,
+  onPlaybackRateChange,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -126,7 +130,11 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
         <Typography variant="h5" color="white">
           Video Title
         </Typography>
-        <Button variant="contained" color="primary" startIcon={<BookMarkIcon />}>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<BookMarkIcon />}
+        >
           Bookmark
         </Button>
       </Grid>
@@ -203,7 +211,7 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
 
         <Grid item>
           <Button variant="text" sx={bottemButton} onClick={handleClickPopover}>
-            <Typography>1x</Typography>
+            <Typography>{playbackRate}</Typography>
           </Button>
           <Popover
             id={id}
@@ -214,12 +222,17 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
             transformOrigin={{ vertical: "bottom", horizontal: "center" }}
           >
             <List>
+              <Typography alignItems={'center'} p={1} color="black">speed</Typography>
               {speeds.map((speed) => (
                 <ListItemButton
                   key={speed}
-                  onClick={() => console.log(`Chọn tốc độ: ${speed}`)}
+                  onClick={() => {
+                    if (onPlaybackRateChange) {
+                      onPlaybackRateChange(speed);
+                    }
+                  }}
                 >
-                  <Typography color="secondary">{speed}</Typography>
+                  <Typography color={speed === playbackRate ? "primary" : "black"}>{speed} x</Typography>
                 </ListItemButton>
               ))}
             </List>

@@ -7,12 +7,15 @@ import { useState, useRef } from "react";
 const ReactVideo: React.FC = () => {
   const [playing, setPlaying] = useState<boolean>(true);
   const playerRef = useRef<ReactPlayer>(null);
-  const [muted, setMuted] = useState<boolean>(true);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
   const [volume, setVolume] = useState<number>(0.5);
+  const [playbackRate, setPlaybackRate] = useState<number>(1);
 
   const handlePlayPause = () => {
     setPlaying((prev) => !prev);
   };
+
+ 
 
   const handleRewind = () => {
     playerRef.current?.seekTo(playerRef.current.getCurrentTime() - 10);
@@ -21,12 +24,12 @@ const ReactVideo: React.FC = () => {
     playerRef.current?.seekTo(playerRef.current.getCurrentTime() + 10);
   };
   const handleMuted = () => {
-    setMuted((prevMuted) => !prevMuted);
+    setIsMuted((prevIsMuted) => !prevIsMuted);
   };
 
   const handleVolumeChange = (_event: Event, newValue: number | number[]) => {
     setVolume((newValue as number) / 100);
-    setMuted((newValue as number) === 0);
+    setIsMuted((newValue as number) === 0);
   };
 
   const handleVolumeSeekDown = (
@@ -34,9 +37,12 @@ const ReactVideo: React.FC = () => {
     newValue: number | number[]
   ) => {
     setVolume((newValue as number) / 100);
-    setMuted((newValue as number) === 0);
+    setIsMuted((newValue as number) === 0);
   };
 
+  const handelePlaybackRateChange = (speed: number) => {
+    setPlaybackRate(speed);
+  };
   return (
     <Container maxWidth="md">
       <Box
@@ -48,8 +54,9 @@ const ReactVideo: React.FC = () => {
           width="100%"
           height="auto"
           playing={playing}
-          muted={muted}
+          muted={isMuted}
           volume={volume}
+          playbackRate={playbackRate}
           url="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
         />
         <PlayerControl
@@ -57,11 +64,13 @@ const ReactVideo: React.FC = () => {
           onPlayPause={handlePlayPause}
           onRewind={handleRewind}
           onFastRewind={handleFastRewind}
-          muted={muted}
+          muted={isMuted}
           onMute={handleMuted}
           onVolumeChange={handleVolumeChange}
           onVolumeSeekDown={handleVolumeSeekDown}
           volume={volume}
+          playbackRate={playbackRate}
+          onPlaybackRateChange={handelePlaybackRateChange}
         />
       </Box>
     </Container>
