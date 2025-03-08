@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Grid,
@@ -21,6 +22,7 @@ import {
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
+import { formatTime } from "../../utils/FormatTime";
 
 const speeds: number[] = [0.5, 1, 1.5, 2];
 
@@ -74,7 +76,7 @@ interface PlayerControlProps {
   muted?: boolean;
   onMute?: () => void;
   onVolumeChange?: (event: Event, newValue: number | number[]) => void;
-  onVolumeSeekDown?: (
+  onVolumeSeekUp?: (
     event: React.SyntheticEvent | Event,
     newValue: number | number[]
   ) => void;
@@ -82,6 +84,16 @@ interface PlayerControlProps {
   playbackRate?: number;
   onPlaybackRateChange?: (rate: number) => void;
   onToggleFullScreen?: () => void;
+  played: number;
+  onSeek?: (event: Event, newValue: number | number[]) => void;
+  onSeekMouseDown?: (event: React.MouseEvent<HTMLElement>) => void;
+  onSeekMouseUp?: (
+    event: React.SyntheticEvent | Event,
+    newValue: number | number[]
+  ) => void;
+  elapsedTime: string;
+  totalDuration?: string;
+  duration?: number;
 }
 
 const PlayerControl: React.FC<PlayerControlProps> = ({
@@ -92,11 +104,18 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
   muted,
   onMute,
   onVolumeChange,
-  onVolumeSeekDown,
+  onVolumeSeekUp,
   volume,
   playbackRate,
   onPlaybackRateChange,
   onToggleFullScreen,
+  played,
+  onSeek,
+  onSeekMouseUp,
+  onSeekMouseDown,
+  elapsedTime,
+  totalDuration,
+  duration = 0, 
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -132,12 +151,8 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
         <Typography variant="h5" color="white">
           Video Title
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<BookMarkIcon />}
-        >
-          Bookmark
+        <Button variant="outlined">
+          <BookMarkIcon />
         </Button>
       </Grid>
 
@@ -176,8 +191,18 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
           <PrettoSlider
             min={0}
             max={100}
-            defaultValue={30}
+            value={played * 100}
+            // Cho hiển thị label khi drag
             valueLabelDisplay="auto"
+            // Dùng valueLabelFormat để hiển thị thời gian
+            valueLabelFormat={(value: number) => {
+              // Tính ra giây
+              const current = (value / 100) * duration;
+              return formatTime(current);
+            }}
+            onChange={onSeek}
+            onMouseDown={onSeekMouseDown}
+            onChangeCommitted={onSeekMouseUp}
           />
         </Grid>
         <Grid item>
@@ -203,10 +228,12 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
               value={volume * 100}
               sx={{ color: "#ccc", width: 100 }}
               onChange={onVolumeChange}
-              onChangeCommitted={onVolumeSeekDown}
+              onChangeCommitted={onVolumeSeekUp}
             />
             <Button variant="text" style={{ color: "#fff", marginLeft: 16 }}>
-              <Typography>05:05</Typography>
+              <Typography>
+                {elapsedTime}/{totalDuration}
+              </Typography>
             </Button>
           </Grid>
         </Grid>
@@ -224,7 +251,9 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
             transformOrigin={{ vertical: "bottom", horizontal: "center" }}
           >
             <List>
-              <Typography alignItems={'center'} p={1} color="black">speed</Typography>
+              <Typography alignItems={"center"} p={1} color="black">
+                speed
+              </Typography>
               {speeds.map((speed) => (
                 <ListItemButton
                   key={speed}
@@ -234,7 +263,11 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
                     }
                   }}
                 >
-                  <Typography color={speed === playbackRate ? "primary" : "black"}>{speed} x</Typography>
+                  <Typography
+                    color={speed === playbackRate ? "primary" : "black"}
+                  >
+                    {speed} x
+                  </Typography>
                 </ListItemButton>
               ))}
             </List>
