@@ -6,19 +6,20 @@ import {
   Button,
   IconButton,
   Slider,
-  Popover,
+  Menu,
   List,
   ListItemButton,
 } from "@mui/material";
 import {
-  FastRewind,
-  FastForward,
+  Replay10,
+  Forward10,
   PlayArrow,
   Pause,
   VolumeOff,
   VolumeUp,
   Fullscreen,
   Bookmark as BookMarkIcon,
+  FastForward,
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
@@ -94,6 +95,8 @@ interface PlayerControlProps {
   elapsedTime: string;
   totalDuration?: string;
   duration?: number;
+  onChangeTimeDisplayFormat?: () => void;
+  onFastForward?: () => void;
 }
 
 const PlayerControl: React.FC<PlayerControlProps> = ({
@@ -115,7 +118,9 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
   onSeekMouseDown,
   elapsedTime,
   totalDuration,
-  duration = 0, 
+  duration = 0,
+  onChangeTimeDisplayFormat,
+  onFastForward,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -169,19 +174,19 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
         }}
       >
         <IconButton onClick={onRewind} sx={PlayPauseButton}>
-          <FastRewind fontSize="inherit" />
+          <Replay10 fontSize="medium" />
         </IconButton>
 
         <IconButton onClick={onPlayPause} sx={PlayPauseButton}>
           {playing ? (
-            <Pause fontSize="large" />
+            <Pause fontSize="inherit" />
           ) : (
-            <PlayArrow fontSize="large" />
+            <PlayArrow fontSize="inherit" />
           )}
         </IconButton>
 
         <IconButton onClick={onFastRewind} sx={PlayPauseButton}>
-          <FastForward fontSize="inherit" />
+          <Forward10 fontSize="medium" />
         </IconButton>
       </Grid>
 
@@ -209,10 +214,13 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
           <Grid container alignItems="center">
             <IconButton onClick={onPlayPause} sx={bottemButton}>
               {playing ? (
-                <Pause fontSize="large" />
+                <Pause fontSize="inherit" />
               ) : (
-                <PlayArrow fontSize="large" />
+                <PlayArrow fontSize="inherit" />
               )}
+            </IconButton>
+            <IconButton onClick={onFastForward} sx={bottemButton}>
+              <FastForward fontSize="large" />
             </IconButton>
 
             <IconButton onClick={onMute} sx={bottemButton}>
@@ -230,7 +238,11 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
               onChange={onVolumeChange}
               onChangeCommitted={onVolumeSeekUp}
             />
-            <Button variant="text" style={{ color: "#fff", marginLeft: 16 }}>
+            <Button
+              onClick={onChangeTimeDisplayFormat}
+              variant="text"
+              style={{ color: "#fff", marginLeft: 16 }}
+            >
               <Typography>
                 {elapsedTime}/{totalDuration}
               </Typography>
@@ -240,9 +252,9 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
 
         <Grid item>
           <Button variant="text" sx={bottemButton} onClick={handleClickPopover}>
-            <Typography>{playbackRate}</Typography>
+            <Typography>{playbackRate} x</Typography>
           </Button>
-          <Popover
+          <Menu
             id={id}
             open={open}
             anchorEl={anchorEl}
@@ -261,6 +273,7 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
                     if (onPlaybackRateChange) {
                       onPlaybackRateChange(speed);
                     }
+                    handleClose();
                   }}
                 >
                   <Typography
@@ -271,7 +284,7 @@ const PlayerControl: React.FC<PlayerControlProps> = ({
                 </ListItemButton>
               ))}
             </List>
-          </Popover>
+          </Menu>
           <IconButton onClick={onToggleFullScreen} sx={bottemButton}>
             <Fullscreen fontSize="large" />
           </IconButton>
