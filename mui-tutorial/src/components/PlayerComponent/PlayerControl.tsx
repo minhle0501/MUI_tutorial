@@ -23,7 +23,7 @@ import {
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
-import { formatTime } from "../../utils/FormatTime";
+import { formatTime } from "../../utils/formatTime";
 
 const speeds: number[] = [0.5, 1, 1.5, 2];
 

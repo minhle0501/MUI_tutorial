@@ -6,7 +6,7 @@ import PlayerControl from "../components/PlayerComponent/PlayerControl";
 import { useState, useRef } from "react";
 import screenfull from "screenfull";
 //formatTime chuyển đổi số giay mm:ss 
-import { formatTime } from "../utils/FormatTime";
+import { formatTime } from "../utils/formatTime";
 
 const ReactVideo: React.FC = () => {
   // ref to ReactPlayer
