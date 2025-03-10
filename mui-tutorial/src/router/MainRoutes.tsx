@@ -7,6 +7,7 @@ import Contact from "../pages/Contact";
 import MuiPages from "../pages/MuiPages";
 import ReactVideo from "../pages/ReactVideo";
 import MuiRoutes from "./MuiRoutes"; // Import MuiRoutes
+import AxiosPage from "../pages/AxiosPage";
 
 
 function MainRoutes() {
@@ -18,6 +19,7 @@ function MainRoutes() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/mui-pages" element={<MuiPages />} />
       <Route path="/react-video" element={<ReactVideo />} />
+      <Route path="/axios-page" element={<AxiosPage />} />
       
       {/* Gọi MuiRoutes vào đây */}
       <Route path="/*" element={<MuiRoutes />} />

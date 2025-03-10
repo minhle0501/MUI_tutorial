@@ -24,8 +24,9 @@ function Navbar() {
         {/* Library Dropdown */}
         <Button color="inherit" onClick={handleMenuOpen}>Library</Button>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-          <MenuItem component={Link} to="/mui-pages" onClick={handleMenuClose}>MuiPages</MenuItem>
-          <MenuItem component={Link} to="/react-video" onClick={handleMenuClose}>ReactVideo</MenuItem>
+          <MenuItem component={Link} to="/mui-pages" onClick={handleMenuClose}>Mui Pages</MenuItem>
+          <MenuItem component={Link} to="/react-video" onClick={handleMenuClose}>React Video</MenuItem>
+          <MenuItem component={Link} to="/axios-page" onClick={handleMenuClose}>Axios Pages</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
