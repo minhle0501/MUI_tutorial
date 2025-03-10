@@ -8,6 +8,7 @@ import MuiPages from "../pages/MuiPages";
 import ReactVideo from "../pages/ReactVideo";
 import MuiRoutes from "./MuiRoutes"; // Import MuiRoutes
 import AxiosPage from "../pages/AxiosPage";
+import ReactLazyLoad from "../pages/ReactLazyLoad";
 
 
 function MainRoutes() {
@@ -20,6 +21,7 @@ function MainRoutes() {
       <Route path="/mui-pages" element={<MuiPages />} />
       <Route path="/react-video" element={<ReactVideo />} />
       <Route path="/axios-page" element={<AxiosPage />} />
+      <Route path="/react-lazy-load" element={<ReactLazyLoad />} />
       
       {/* Gọi MuiRoutes vào đây */}
       <Route path="/*" element={<MuiRoutes />} />
