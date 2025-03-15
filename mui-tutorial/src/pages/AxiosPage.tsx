@@ -32,7 +32,6 @@ const AxiosPage: React.FC = () => {
 
       <Typography variant="h4">User List:</Typography>
 
-      {/* Hiển thị bảng */}
       {users.length > 0 && (
         <TableContainer component={Paper} sx={{ mt: 3 }}>
           <Table>

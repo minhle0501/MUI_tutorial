@@ -28,6 +28,7 @@ function Navbar() {
           <MenuItem component={Link} to="/react-video" onClick={handleMenuClose}>React Video</MenuItem>
           <MenuItem component={Link} to="/axios-page" onClick={handleMenuClose}>Axios Pages</MenuItem>
           <MenuItem component={Link} to="/react-lazy-load" onClick={handleMenuClose}>LazyLoad</MenuItem>
+          <MenuItem component={Link} to="/zustand-demo" onClick={handleMenuClose}>zustand demo</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

@@ -9,6 +9,8 @@ import ReactVideo from "../pages/ReactVideo";
 import MuiRoutes from "./MuiRoutes"; // Import MuiRoutes
 import AxiosPage from "../pages/AxiosPage";
 import ReactLazyLoad from "../pages/ReactLazyLoad";
+import ZustandDemo from "../pages/ZustandDemo";
+
 
 
 function MainRoutes() {
@@ -22,6 +24,7 @@ function MainRoutes() {
       <Route path="/react-video" element={<ReactVideo />} />
       <Route path="/axios-page" element={<AxiosPage />} />
       <Route path="/react-lazy-load" element={<ReactLazyLoad />} />
+      <Route path="/zustand-demo" element={<ZustandDemo />} />
       
       {/* Gọi MuiRoutes vào đây */}
       <Route path="/*" element={<MuiRoutes />} />
